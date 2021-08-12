@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io.connect('http://localhost:3000')
+
+        socket.on('message', (data) => {
+            $.notify(`New message\n ${data}`)
+
+            socket.emit('updated', {response: 'user was updated'})
+        })
+    </script>
+</head>
+<body>
+<p>User was updated</p>
+</body>
+</html>
